@@ -1,6 +1,8 @@
 import React, {useRef, useState} from "react";
 import {Button, Form} from "react-bootstrap";
 
+const URL = "http://localhost:3001/login";
+
 export function Authentication() {
 
     const [username, setUsername] = useState('');
@@ -10,13 +12,26 @@ export function Authentication() {
 
     const handleUsernameChange = (e) => setUsername(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
+
+    function postLogin(login, password) {
+        return fetch(URL, {
+            method: 'POST',
+            body: JSON.stringify({username, password}),
+        })
+            .then((response) => response.statusCode)
+    }
+
+
     const clickLogin = (e) => {
-        if (username !== password) {
-            setWrongCredentials(true);
-        } else {
-            setWrongCredentials(false);
-            // TODO: redirect to list
-        }
+        postLogin(username, password)
+            .then(responseCode => {
+                if (responseCode === 200) {
+                    setWrongCredentials(false);
+                    // TODO: redirect to list
+                } else {
+                    setWrongCredentials(true);
+                }
+            });
     }
     const clickCancel = (e) => {
         setUsername(e.target.reset);
