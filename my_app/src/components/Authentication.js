@@ -1,9 +1,13 @@
 import React, {useRef, useState} from "react";
 import {Button, Form} from "react-bootstrap";
+import TopBanner from "./TopBanner";
+import BottomBanner from "./BottomBanner";
+import { useNavigate} from "react-router";
 
 const URL = "http://localhost:3001/login";
 
 export function Authentication() {
+    const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -16,18 +20,19 @@ export function Authentication() {
     function postLogin(login, password) {
         return fetch(URL, {
             method: 'POST',
-            body: JSON.stringify({username, password}),
+            body: JSON.stringify({login, password}),
         })
-            .then((response) => response.statusCode)
+            .then((response) => response.status);
     }
 
 
     const clickLogin = (e) => {
         postLogin(username, password)
             .then(responseCode => {
-                if (responseCode === 200) {
+                console.log(responseCode);
+                navigate("/robots");
+                if (responseCode === 401) {
                     setWrongCredentials(false);
-                    // TODO: redirect to list
                 } else {
                     setWrongCredentials(true);
                 }
@@ -42,6 +47,7 @@ export function Authentication() {
 
     return (
         <div>
+            <TopBanner/>
             <h2>Inicio de sesión</h2>
 
             <Form ref={formRef}>
@@ -63,6 +69,8 @@ export function Authentication() {
                     <Form.Label>Error de autenticación. Revise sus credenciales</Form.Label>
                 }
             </Form>
+
+            <BottomBanner/>
         </div>
     );
 }

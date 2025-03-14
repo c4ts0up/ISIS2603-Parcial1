@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import "react-bootstrap";
 import {render} from "react-dom";
+import TopBanner from "./TopBanner";
+import BottomBanner from "./BottomBanner";
 
 const URL = "http://localhost:3001/robots";
 
@@ -41,17 +43,21 @@ export function RobotList() {
 
 
     return (
-        <table className="table">
-            <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Modelo</th>
-                <th scope="col">Empresa Fabricante</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <>
+            <TopBanner></TopBanner>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Empresa Fabricante</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <BottomBanner/>
+        </>
     );
 }
