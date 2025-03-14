@@ -2,9 +2,16 @@ import {useEffect, useState} from "react";
 import "react-bootstrap";
 import {render} from "react-dom";
 
+const URL = "http://localhost:3001/robots";
+
 export function RobotList() {
 
     const [currentRobot, setCurrentRobot] = useState(null);
+
+    function getData(url) {
+        return fetch(url)
+            .then(response => response.json());
+    }
 
     const clickRobot = (e) => {
         setCurrentRobot(e.target.value);
@@ -27,23 +34,10 @@ export function RobotList() {
         });
     }
 
-
-    const robotList = [
-        {
-            "id": 1,
-            "nombre": "Pedrito",
-            "modelo": "PR-001",
-            "empresaFabricante": "Robotico Corp"
-        },
-        {
-            "id": 2,
-            "nombre": "IronChef",
-            "modelo": "IC-3000",
-            "empresaFabricante": "RoboCocina Inc."
-        }
-    ]
-
-    updateTable(robotList);
+    getData(URL).then(data => {
+        console.log(data);
+        updateTable(data);
+    });
 
 
     return (
