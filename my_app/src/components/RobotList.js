@@ -9,53 +9,48 @@ const URL = "http://localhost:3001/robots";
 export function RobotList() {
 
     const [currentRobot, setCurrentRobot] = useState(null);
+    const [robotList, setRobotList] = useState([]);
 
     function getData(url) {
         return fetch(url)
             .then(response => response.json());
     }
 
-    const clickRobot = (e) => {
-        setCurrentRobot(e.target.value);
+    const clickRobot = (robot) => {
+        setCurrentRobot(robot);
+        console.log(`Robot ${robot.nombre} seleccionado`);
     }
 
 
-    function updateTable(robotList) {
-        const tbody = document.querySelector("tbody")
-        tbody.innerHTML = "";
-
-        robotList.forEach(robot => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td class="p-1">${robot.id}</td>
-                <td class="p-1">${robot.nombre}</td>
-                <td class="p-1">${robot.modelo}</td>
-                <td class="p-1">${robot.empresaFabricante}</td>
-            `;
-            tbody.appendChild(row);
-        });
+    function tableData(robotList) {
+        return robotList.map(robot => (
+            <tr key={robot.id} onClick={() => clickRobot(robot)}>
+                <td className="p-1">{robot.id}</td>
+                <td className="p-1">{robot.nombre}</td>
+                <td className="p-1">{robot.modelo}</td>
+                <td className="p-1">{robot.empresaFabricante}</td>
+            </tr>
+        ));
     }
 
-    getData(URL).then(data => {
-        console.log(data);
-        updateTable(data);
-    });
-
+    useEffect(() => {
+        getData(URL)
+            .then(data => setRobotList(data));
+    }, []);
 
     return (
         <>
             <TopBanner></TopBanner>
             <table className="table">
                 <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Empresa Fabricante</th>
-                </tr>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Empresa Fabricante</th>
+                    </tr>
                 </thead>
-                <tbody>
-                </tbody>
+                <tbody>{tableData(robotList)}</tbody>
             </table>
             <BottomBanner/>
         </>
