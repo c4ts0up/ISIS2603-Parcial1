@@ -17,6 +17,7 @@ export default function RobotCard(props) {
     useEffect(() => {
         getRobotDetails(URL, props.robot.id)
             .then((robotDetails) => {
+                console.log(robotDetails);
                 setRobotImage(robotDetails.imagen
                     .replace("github.com", "raw.githubusercontent.com")
                     .replace("blob/", "")
@@ -25,13 +26,13 @@ export default function RobotCard(props) {
     }, [props.robot.id]);
 
     return (
-        <Card>
-            <Card.Title>{props.robot.nombre}</Card.Title>
-            <Card.Img src={robotImage} alt={props.robot.id} className="rounded" />
+        <Card className={"robot-card"}>
+            <Card.Title className={"robot-card-title"}>{props.robot.nombre}</Card.Title>
+            <Card.Img src={robotImage} alt={props.robot.id} className={"robot-card-img"} />
             <Card.Body>
-                <Card.Text>Año de Fabricación: {props.robot.añoFabricacion}</Card.Text>
-                <Card.Text>Capacidad de Procesamiento: {props.robot.capacidadProcesamiento}</Card.Text>
-                <Card.Text>Humor: {props.robot.humor}</Card.Text>
+                <Card.Text className={"robot-card-text"}><b>→ Año de Fabricación:</b> {props.robot.añoFabricacion}</Card.Text>
+                <Card.Text className={"robot-card-text"}><b>→ Capacidad de Procesamiento:</b> {props.robot.capacidadProcesamiento}</Card.Text>
+                <Card.Text className={"robot-card-text"}><b>→ Humor:</b> {props.robot.humor}</Card.Text>
             </Card.Body>
         </Card>
     )

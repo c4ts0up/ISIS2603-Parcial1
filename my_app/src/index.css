@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.robot-card {
+  background-color: #d9d9d9 !important;
+  border-radius: 0 !important;
+  border-color: #000000 !important;
+  border-width: 1 !important;
+}
+
+.robot-card-img {
+  max-width: 210px !important;
+  max-height: 200px !important;
+  margin: 0 auto;
+  border-color: #000000;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0 !important;
+}
+
+.robot-card-title {
+  font-size: small;
+  font-weight: bold;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.robot-card-text {
+  font-size: medium;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.banner-img {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1100px !important;
+}
+
+.upper-break {
+  max-width: 70% !important;
+  margin: 0 auto;
+}
+
+.title {
+  padding-top: 40px;
+}
+
+.contact-banner {
+  padding-top: 40px;
+}
+
+.lower-break {
+  max-width: 70% !important;
+  margin: 0 auto;
+}

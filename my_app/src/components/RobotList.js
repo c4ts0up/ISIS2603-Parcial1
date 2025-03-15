@@ -28,7 +28,7 @@ export function RobotList() {
     function tableData(robotList) {
         return robotList.map(robot => (
             <tr key={robot.id} onClick={() => clickRobot(robot)}>
-                <td className="p-1">{robot.id}</td>
+                <th className="p-1">{robot.id}</th>
                 <td className="p-1">{robot.nombre}</td>
                 <td className="p-1">{robot.modelo}</td>
                 <td className="p-1">{robot.empresaFabricante}</td>
@@ -45,10 +45,10 @@ export function RobotList() {
         <>
             <TopBanner></TopBanner>
             <Container>
-                <Row>
+                <Row className={"justify-content-center"}>
                     <Col md={7}>
                         <table className="table">
-                        <thead>
+                        <thead className="table-dark">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
@@ -59,7 +59,7 @@ export function RobotList() {
                         <tbody>{tableData(robotList)}</tbody>
                     </table>
                     </Col>
-                    <Col md={5}>
+                    <Col md={4}>
                         {currentRobot !== null ? (
                             <RobotCard robot={currentRobot} />
                         ) : (
