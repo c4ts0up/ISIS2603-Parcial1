@@ -1,5 +1,5 @@
 import * as PropTypes from "prop-types";
-import {Card, CardImg} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import {useEffect, useState} from "react";
 
 const URL = "http://localhost:3001/robots";

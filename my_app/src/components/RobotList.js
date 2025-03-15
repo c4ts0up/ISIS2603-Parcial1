@@ -3,6 +3,7 @@ import "react-bootstrap";
 import TopBanner from "./TopBanner";
 import BottomBanner from "./BottomBanner";
 import RobotCard from "./RobotCard";
+import {Col, Container, Row} from "react-bootstrap";
 
 const URL = "http://localhost:3001/robots";
 
@@ -43,24 +44,32 @@ export function RobotList() {
     return (
         <>
             <TopBanner></TopBanner>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Modelo</th>
-                        <th scope="col">Empresa Fabricante</th>
-                    </tr>
-                </thead>
-                <tbody>{tableData(robotList)}</tbody>
-            </table>
-            {currentRobot !== null ? (
-                <RobotCard robot={currentRobot} />
-            ) : (
-                <> </>
-            )}
-            <BottomBanner/>
+            <Container>
+                <Row>
+                    <Col md={7}>
+                        <table className="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Empresa Fabricante</th>
+                        </tr>
+                        </thead>
+                        <tbody>{tableData(robotList)}</tbody>
+                    </table>
+                    </Col>
+                    <Col md={5}>
+                        {currentRobot !== null ? (
+                            <RobotCard robot={currentRobot} />
+                        ) : (
+                            <> </>
+                        )}
+                    </Col>
+                </Row>
+            </Container>
 
+            <BottomBanner/>
         </>
     );
 }
