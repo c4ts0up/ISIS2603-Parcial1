@@ -29,6 +29,7 @@ export function Authentication() {
     const clickLogin = (e) => {
         postLogin(username, password)
             .then(responseCode => {
+                // TODO: por qué siempre devuelve 401?
                 console.log(responseCode);
                 navigate("/robots");
                 if (responseCode === 401) {

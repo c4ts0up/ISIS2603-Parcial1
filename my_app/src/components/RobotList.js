@@ -1,10 +1,12 @@
 import {useEffect, useState} from "react";
 import "react-bootstrap";
-import {render} from "react-dom";
 import TopBanner from "./TopBanner";
 import BottomBanner from "./BottomBanner";
+import RobotCard from "./RobotCard";
 
 const URL = "http://localhost:3001/robots";
+
+
 
 export function RobotList() {
 
@@ -52,7 +54,13 @@ export function RobotList() {
                 </thead>
                 <tbody>{tableData(robotList)}</tbody>
             </table>
+            {currentRobot !== null ? (
+                <RobotCard robot={currentRobot} />
+            ) : (
+                <> </>
+            )}
             <BottomBanner/>
+
         </>
     );
 }
