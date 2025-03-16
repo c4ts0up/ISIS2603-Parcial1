@@ -53,7 +53,7 @@ export function Authentication() {
 
             <Container>
                 <Row className={"mt-3 mb-4"}>
-                    <h2 className={"text-center"}>Inicio de sesión</h2>
+                    <h2 className={"text-center fw-bold"}>Inicio de sesión</h2>
                 </Row>
                 <Row className={"justify-content-center"}>
                     <Col md={4}>
