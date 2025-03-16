@@ -4,10 +4,12 @@ import TopBanner from "./TopBanner";
 import BottomBanner from "./BottomBanner";
 import { useNavigate} from "react-router";
 import "../index.css";
+import {useIntl} from "react-intl";
 
 const URL = "http://localhost:3001/login";
 
 export function Authentication() {
+    const { messages } = useIntl();
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -58,33 +60,33 @@ export function Authentication() {
 
             <Container>
                 <Row className={"mt-3 mb-4"}>
-                    <h2 className={"text-center fw-bold"}>Inicio de sesión</h2>
+                    <h2 className={"text-center fw-bold"}>{messages.titles.login}</h2>
                 </Row>
                 <Row className={"justify-content-center"}>
                     <Col md={4}>
                         <Form ref={formRef}>
                             <Form.Group className={"mb-2"} controlId="formBasicEmail">
-                                <Form.Label className={"fw-bold"}>Nombre de usuario</Form.Label>
+                                <Form.Label className={"fw-bold"}>{messages.auth.login}</Form.Label>
                                 <Form.Control className={"auth-input px-4"} type="email" onChange={handleUsernameChange}/>
                             </Form.Group>
 
                             <Form.Group className={"mb-2"} controlId="formBasicPassword">
-                                <Form.Label className={"fw-bold"}>Contraseña</Form.Label>
+                                <Form.Label className={"fw-bold"}>{messages.auth.password}</Form.Label>
                                 <Form.Control className={"auth-input px-4"} type="password" onChange={handlePasswordChange} />
                             </Form.Group>
 
                             <Row className={"justify-content-between"}>
                                 <Col md={6}>
-                                    <Button className="auth-login-button w-100" onClick={clickLogin}>Ingresar</Button>
+                                    <Button className="auth-login-button w-100" onClick={clickLogin}>{messages.auth.loginButton}</Button>
                                 </Col>
                                 <Col md={6}>
-                                    <Button className="auth-cancel-button w-100" onClick={clickCancel}>Cancelar</Button>
+                                    <Button className="auth-cancel-button w-100" onClick={clickCancel}>{messages.auth.cancelButton}</Button>
                                 </Col>
                             </Row>
                             <Row className={"mt-3 fw-bold text-danger"}>
                             {
                                 wrongCredentials &&
-                                <Form.Label>Error de autenticación. Revise sus credenciales</Form.Label>
+                                <Form.Label>{messages.auth.wrongLogin}</Form.Label>
                             }
                             </Row>
                         </Form>

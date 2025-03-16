@@ -1,7 +1,15 @@
 {
   "titles": {
     "mainTitle": "Adopt a Robot with Robot Lovers!",
-    "contact": "Contact us"
+    "contact": "Contact us",
+    "login": "Log in"
+  },
+  "auth" : {
+    "login": "Username",
+    "password": "Password",
+    "loginButton": "Log in",
+    "cancelButton": "Cancel",
+    "wrongLogin": "Login error. Check your credentials"
   },
   "list": {
     "id": "ID",
