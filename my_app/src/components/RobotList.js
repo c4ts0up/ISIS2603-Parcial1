@@ -22,6 +22,7 @@ export function RobotList() {
     const clickRobot = (robot) => {
         setCurrentRobot(robot);
         console.log(`Robot ${robot.nombre} seleccionado`);
+        console.log(robot);
     }
 
 

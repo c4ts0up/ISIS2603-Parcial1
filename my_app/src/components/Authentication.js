@@ -21,20 +21,26 @@ export function Authentication() {
     function postLogin(login, password) {
         return fetch(URL, {
             method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
             body: JSON.stringify({login, password}),
         })
-            .then((response) => response.status);
+            .then((response) => {
+                console.log(response);
+                return response.status
+            });
     }
 
 
     const clickLogin = (e) => {
         postLogin(username, password)
             .then(responseCode => {
-                // TODO: por qué siempre devuelve 401?
                 console.log(responseCode);
-                navigate("/robots");
-                if (responseCode === 401) {
+                if (responseCode === 200) {
                     setWrongCredentials(false);
+                    navigate("/robots");
                 } else {
                     setWrongCredentials(true);
                 }
@@ -76,10 +82,12 @@ export function Authentication() {
                                     <Button className="auth-cancel-button w-100" onClick={clickCancel}>Cancelar</Button>
                                 </Col>
                             </Row>
+                            <Row className={"mt-3 fw-bold text-danger"}>
                             {
                                 wrongCredentials &&
                                 <Form.Label>Error de autenticación. Revise sus credenciales</Form.Label>
                             }
+                            </Row>
                         </Form>
                     </Col>
                 </Row>
