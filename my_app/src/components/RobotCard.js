@@ -1,12 +1,14 @@
 import * as PropTypes from "prop-types";
 import {Card} from "react-bootstrap";
 import {useEffect, useState} from "react";
+import {useIntl} from "react-intl";
 
 const URL = "http://localhost:3001/robots";
 
 
 export default function RobotCard(props) {
 
+    const { messages } = useIntl();
     const [robotImage, setRobotImage] = useState(null);
 
     function getRobotDetails(url, robotId) {
@@ -30,9 +32,9 @@ export default function RobotCard(props) {
             <Card.Title className={"robot-card-title"}>{props.robot.nombre}</Card.Title>
             <Card.Img src={robotImage} alt={props.robot.id} className={"robot-card-img"} />
             <Card.Body>
-                <Card.Text className={"robot-card-text"}><b>→ Año de Fabricación:</b> {props.robot.añoFabricacion}</Card.Text>
-                <Card.Text className={"robot-card-text"}><b>→ Capacidad de Procesamiento:</b> {props.robot.capacidadProcesamiento}</Card.Text>
-                <Card.Text className={"robot-card-text"}><b>→ Humor:</b> {props.robot.humor}</Card.Text>
+                <Card.Text className={"robot-card-text"}><b>→ {messages.card.productionDate}:</b> {props.robot.añoFabricacion}</Card.Text>
+                <Card.Text className={"robot-card-text"}><b>→ {messages.card.processingCapacity}:</b> {props.robot.capacidadProcesamiento}</Card.Text>
+                <Card.Text className={"robot-card-text"}><b>→ {messages.card.humor}:</b> {props.robot.humor}</Card.Text>
             </Card.Body>
         </Card>
     )

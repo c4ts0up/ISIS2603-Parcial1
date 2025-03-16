@@ -4,12 +4,17 @@ import TopBanner from "./TopBanner";
 import BottomBanner from "./BottomBanner";
 import RobotCard from "./RobotCard";
 import {Col, Container, Row} from "react-bootstrap";
+import {useIntl} from "react-intl";
 
 const URL = "http://localhost:3001/robots";
 
 
 
 export function RobotList() {
+
+    const {locale, messages} = useIntl();
+    console.log("Locale:", locale);
+    console.log("Messages:", messages);
 
     const [currentRobot, setCurrentRobot] = useState(null);
     const [robotList, setRobotList] = useState([]);
@@ -51,10 +56,10 @@ export function RobotList() {
                         <table className="table">
                         <thead className="table-dark">
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Modelo</th>
-                            <th scope="col">Empresa Fabricante</th>
+                            <th scope="col">{messages.list.id}</th>
+                            <th scope="col">{messages.list.name}</th>
+                            <th scope="col">{messages.list.model}</th>
+                            <th scope="col">{messages.list.manufacturer}</th>
                         </tr>
                         </thead>
                         <tbody>{tableData(robotList)}</tbody>

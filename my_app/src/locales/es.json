@@ -1,0 +1,17 @@
+{
+  "titles": {
+    "mainTitle": "Adopta un Robot con Robot Lovers!",
+    "contact": "Contáctanos"
+  },
+  "list": {
+    "id": "ID",
+    "name":  "Nombre",
+    "model": "Modelo",
+    "manufacturer": "Empresa Fabricante"
+  },
+  "card": {
+    "productionDate": "Año de Fabricación",
+    "processingCapacity": "Capacidad de Procesamiento",
+    "humor": "Humor"
+  }
+}

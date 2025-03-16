@@ -37,7 +37,6 @@ export function Authentication() {
     const clickLogin = (e) => {
         postLogin(username, password)
             .then(responseCode => {
-                console.log(responseCode);
                 if (responseCode === 200) {
                     setWrongCredentials(false);
                     navigate("/robots");

@@ -1,0 +1,17 @@
+{
+  "titles": {
+    "mainTitle": "Adopt a Robot with Robot Lovers!",
+    "contact": "Contact us"
+  },
+  "list": {
+    "id": "ID",
+    "name":  "Name",
+    "model": "Model",
+    "manufacturer": "Manufacturing Company"
+  },
+  "card": {
+    "productionDate": "Manufacture Year",
+    "processingCapacity": "Processing Capacity",
+    "humor": "Humor"
+  }
+}
