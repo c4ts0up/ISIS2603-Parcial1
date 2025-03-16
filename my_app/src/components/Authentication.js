@@ -1,8 +1,9 @@
 import React, {useRef, useState} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import TopBanner from "./TopBanner";
 import BottomBanner from "./BottomBanner";
 import { useNavigate} from "react-router";
+import "../index.css";
 
 const URL = "http://localhost:3001/login";
 
@@ -40,8 +41,8 @@ export function Authentication() {
             });
     }
     const clickCancel = (e) => {
-        setUsername(e.target.reset);
-        setPassword(e.target.reset);
+        setUsername('');
+        setPassword('');
         setWrongCredentials(false);
         formRef.current.reset();
     }
@@ -49,27 +50,40 @@ export function Authentication() {
     return (
         <div>
             <TopBanner/>
-            <h2>Inicio de sesión</h2>
 
-            <Form ref={formRef}>
-                <Form.Group className="mb-3" cmntrolId="formBasicEmail">
-                    <Form.Label>Nombre de usuario</Form.Label>
-                    <Form.Control type="email" onChange={handleUsernameChange}/>
-                </Form.Group>
+            <Container>
+                <Row className={"mt-3 mb-4"}>
+                    <h2 className={"text-center"}>Inicio de sesión</h2>
+                </Row>
+                <Row className={"justify-content-center"}>
+                    <Col md={4}>
+                        <Form ref={formRef}>
+                            <Form.Group className={"mb-2"} controlId="formBasicEmail">
+                                <Form.Label className={"fw-bold"}>Nombre de usuario</Form.Label>
+                                <Form.Control className={"auth-input px-4"} type="email" onChange={handleUsernameChange}/>
+                            </Form.Group>
 
-                <Form.Group className="mb-3" cmntrolId="formBasicPassword">
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" onChange={handlePasswordChange} />
-                </Form.Group>
+                            <Form.Group className={"mb-2"} controlId="formBasicPassword">
+                                <Form.Label className={"fw-bold"}>Contraseña</Form.Label>
+                                <Form.Control className={"auth-input px-4"} type="password" onChange={handlePasswordChange} />
+                            </Form.Group>
 
-                <Button variant="primary" onClick={clickLogin}>Ingresar</Button>
-                <Button variant="primary" onClick={clickCancel}>Cancelar</Button>
-
-                {
-                    wrongCredentials &&
-                    <Form.Label>Error de autenticación. Revise sus credenciales</Form.Label>
-                }
-            </Form>
+                            <Row className={"justify-content-between"}>
+                                <Col md={6}>
+                                    <Button className="auth-login-button w-100" onClick={clickLogin}>Ingresar</Button>
+                                </Col>
+                                <Col md={6}>
+                                    <Button className="auth-cancel-button w-100" onClick={clickCancel}>Cancelar</Button>
+                                </Col>
+                            </Row>
+                            {
+                                wrongCredentials &&
+                                <Form.Label>Error de autenticación. Revise sus credenciales</Form.Label>
+                            }
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
 
             <BottomBanner/>
         </div>
